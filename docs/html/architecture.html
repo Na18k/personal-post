@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Blog Seguro - Arquitetura</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Blog Seguro</h1>
+        <h2>Arquitetura do Sistema & Banco de Dados</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="setup.html">Configuração & Instalação</a></li>
+                <li><a href="architecture.html">Arquitetura do Sistema</a></li>
+                <li><a href="security.html">Autenticação & Segurança</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="architecture">
+            <h2>Arquitetura do Sistema</h2>
+            <p>O Sistema de Blog Seguro é construído com uma arquitetura modular que separa as responsabilidades em componentes específicos:</p>
+            <ul>
+                <li><strong>Classe PersonalPost:</strong> Gerencia operações com o banco de dados, incluindo autenticação de usuários e gerenciamento de postagens.</li>
+                <li><strong>Codificação/Decodificação:</strong> As postagens são armazenadas de forma segura no banco de dados usando codificação <code>base64</code>.</li>
+                <li><strong>Interação com o Banco de Dados:</strong> Todas as interações com o banco de dados são gerenciadas através da biblioteca <code>sqlite3</code>.</li>
+            </ul>
+
+            <h3>Estrutura de Arquivos</h3>
+            <pre><code>
+secure-blog-system/
+│
+├── database/
+│   └── database.db   # Arquivo do banco de dados SQLite
+├── messages.json     # Arquivo de localização para suporte a vários idiomas
+├── PersonalPost.py   # Classe principal para gerenciamento de operações
+└── main.py           # Ponto de entrada da aplicação
+            </code></pre>
+        </section>
+
+        <section id="database">
+            <h2>Design do Banco de Dados</h2>
+            <h3>Tabela de Usuários</h3>
+            <p>A tabela <code>users</code> armazena informações de usuários, como nomes de usuário e senhas criptografadas:</p>
+            <pre><code>
+CREATE TABLE IF NOT EXISTS user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+            </code></pre>
+
+            <h3>Tabela de Postagens</h3>
+            <p>A tabela <code>posts</code> armazena postagens dos usuários com conteúdo codificado:</p>
+            <pre><code>
+CREATE TABLE IF NOT EXISTS posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+            </code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p  class="copyright">&copy; 2024 Documentação do Sistema de Blog Seguro</p>
+    </footer>
+</body>
+</html>
