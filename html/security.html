@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Blog Seguro - Autenticação & Segurança</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Blog Seguro</h1>
+        <h2>Autenticação & Segurança</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="setup.html">Configuração & Instalação</a></li>
+                <li><a href="architecture.html">Arquitetura do Sistema</a></li>
+                <li><a href="security.html">Autenticação & Segurança</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="security-overview">
+            <h2>Visão Geral da Segurança</h2>
+            <p>O Sistema de Blog Seguro implementa medidas robustas de segurança para garantir que os dados e o conteúdo dos usuários estejam protegidos:</p>
+            <ul>
+                <li><strong>Hashing de Senhas:</strong> As senhas dos usuários são criptografadas usando SHA-256 antes de serem armazenadas no banco de dados.</li>
+                <li><strong>Codificação Base64:</strong> O conteúdo das postagens é codificado antes de ser armazenado, impedindo a leitura direta de informações sensíveis.</li>
+            </ul>
+        </section>
+
+        <section id="authentication">
+            <h2>Autenticação de Usuários</h2>
+            <h3>Hashing de Senhas</h3>
+            <p>O sistema criptografa as senhas dos usuários usando SHA-256. Aqui está um exemplo de como isso funciona:</p>
+            <pre><code>
+import hashlib
+
+def hash_password(password):
+    return hashlib.sha256(password.encode('utf-8')).hexdigest()
+            </code></pre>
+
+            <h3>Verificação de Senhas</h3>
+            <p>Quando um usuário faz login, a senha fornecida é criptografada e comparada com o hash armazenado:</p>
+            <pre><code>
+def verify_password(stored_password, provided_password):
+    return stored_password == hashlib.sha256(provided_password.encode('utf-8')).hexdigest()
+            </code></pre>
+        </section>
+
+        <section id="post-security">
+            <h2>Segurança do Conteúdo das Postagens</h2>
+            <p>O conteúdo das postagens dos usuários é codificado usando <code>base64</code> antes de ser armazenado no banco de dados. Isso garante que dados sensíveis não sejam armazenados em texto claro:</p>
+            <pre><code>
+import base64
+
+def encode_content(content):
+    return base64.b64encode(content.encode('utf-8')).decode('utf-8')
+
+def decode_content(encoded_content):
+    return base64.b64decode(encoded_content.encode('utf-8')).decode('utf-8')
+            </code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p  class="copyright">&copy; 2024 Documentação do Sistema de Blog Seguro</p>
+    </footer>
+</body>
+</html>

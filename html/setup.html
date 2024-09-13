@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Blog Seguro - Configuração e Instalação</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Blog Seguro</h1>
+        <h2>Configuração e Instalação</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="setup.html">Configuração e Instalação</a></li>
+                <li><a href="architecture.html">Arquitetura do Sistema</a></li>
+                <li><a href="security.html">Autenticação e Segurança</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="requirements">
+            <h2>Requisitos</h2>
+            <p>O Sistema de Blog Seguro requer as seguintes dependências:</p>
+            <ul>
+                <li>Python 3.x</li>
+                <li>SQLite3</li>
+                <li>Bibliotecas: <code>hashlib</code>, <code>base64</code>, <code>sqlite3</code>, <code>os</code>, <code>json</code></li>
+                <li>Todas as blibliotecas acima são build-in Python 3, não sendo necessario a utilização de PIP!</li>
+            </ul>
+        </section>
+
+        <section id="installation">
+            <h2>Instalação</h2>
+            <h3>Passo 1: Clonar o Repositório</h3>
+            <pre><code>git clone https://github.com/your-repo/secure-blog-system</code></pre>
+            
+            <h3>Passo 2: Instalar Dependências</h3>
+            <p>Use o seguinte comando para instalar as dependências necessárias:</p>
+            <pre><code>pip install -r requirements.txt</code></pre>
+
+            <h3>Passo 3: Configurar o Banco de Dados</h3>
+            <p>O sistema cria automaticamente o banco de dados SQLite e as tabelas necessárias na primeira vez que você executa a aplicação. Para iniciar o sistema, execute:</p>
+            <pre><code>python main.py</code></pre>
+
+            <h3>Passo 4: Acesso Inicial</h3>
+            <p>Quando a aplicação iniciar, se não houver usuários cadastrados, será solicitado que você crie um novo usuário. Esse usuário será o administrador e poderá começar a adicionar postagens.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p class="copyright">&copy; 2024 Documentação do Sistema de Blog Seguro</p>
+    </footer>
+</body>
+</html>
