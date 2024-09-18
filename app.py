@@ -15,7 +15,7 @@ def load_messages(language='en'):
 language = 'en'  # ou 'pt', 'es', 'ru', 'zh', 'ja'
 messages = load_messages(language)
 
-
+# 
 # Função para limpar a tela
 def clear_screen():
 	"""Limpa a tela do terminal."""
